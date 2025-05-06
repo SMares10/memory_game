@@ -54,18 +54,34 @@ cardArray.sort(() => 0.5 - Math.random()); //random the 12 cards
 //console.log(cardArray);
 
 
-const gridDisplay = document.querySelector("#grid")
+const gridDisplay = document.querySelector('#grid')
 //console.log(gridDisplay);
 
+const cardsChosen = []
+
+//check what does 'data-id' do!!!!
+
 function createBoard () {
-    for (let i = 0; i < 10; i++) {
-        const card =  document.createElement("img")
+    for (let i = 0; i < cardArray.length; i++) {
+        const card =  document.createElement('img')
         card.setAttribute('src','images/blank.png')
-        console.log(card, i)
+        card.setAttribute('data-id', i)
+        card.addEventListener('click', flipCard)
+        //console.log(card, i)
+        gridDisplay.appendChild(card)
     }
 }
 
 createBoard()
+
+function flipCard() {
+    //console.log(cardArray)
+    const cardId = this.getAttribute('data-id')
+    cardsChosen.push(cardArray[cardId].name)
+    //console.log('clicked', cardId)
+    //console.log(cardsChosen)
+    this.setAttribute('src', cardArray[cardId].img)
+}
 
 
 
