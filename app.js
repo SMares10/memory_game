@@ -61,7 +61,7 @@ const cardsWon = []
 
 
 
-function createBoard () {
+function createBoard () { //creating the board
     for (let i = 0; i < cardArray.length; i++) {
         const card =  document.createElement('img')
         card.setAttribute('src','images/blank.png')
@@ -73,7 +73,7 @@ function createBoard () {
 
 createBoard()
 
-function checkMatch(){
+function checkMatch(){  //compare the cards and see if they match
     const cards = document.querySelectorAll('img')
     const optionOneId = cardsChosenIds[0]
     const optionTwoId = cardsChosenIds[1]
@@ -83,6 +83,9 @@ function checkMatch(){
         cards[optionOneId].setAttribute('src', 'images/blank.png')
         cards[optionTwoId].setAttribute('src', 'images/blank.png')
         alert ('You have clicked the same image')
+        cardsChosen = []
+        cardsChosenIds = []
+        return //stop if sa,e card is clicked
     }
 
     if (cardsChosen[0] == cardsChosen[1]){
@@ -107,7 +110,7 @@ function checkMatch(){
 
 }
 
-function flipCard() {
+function flipCard() {  //flipping the cards
     const cardId = this.getAttribute('data-id')
     cardsChosen.push(cardArray[cardId].name)
     cardsChosenIds.push(cardId)
